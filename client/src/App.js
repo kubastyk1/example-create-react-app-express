@@ -4,23 +4,32 @@ import './App.css';
 
 class App extends Component {
   state = {
-    response: ''
+    response: []
   };
 
   componentDidMount() {
     this.callApi()
-      .then(res => this.setState({ response: res.express }))
+      .then(res => this.setState({ response: res.sample }))
       .catch(err => console.log(err));
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/api/sample');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
 
     return body;
   };
+
+  getSamplePrintoutFromResponse() {
+    return this.state.response.map((item, index) => (
+      <p className="App-intro">
+          {item.original}
+          {item.translated}
+      </p>
+    ));
+  }
 
   render() {
     return (
@@ -29,7 +38,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">{this.state.response}</p>
+        <div className="SampleContainer">
+          {
+            this.getSamplePrintoutFromResponse()
+          }
+        </div>
       </div>
     );
   }
