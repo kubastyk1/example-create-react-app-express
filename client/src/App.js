@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SortableComponent from './SortableComponent.js';
 
 class App extends Component {
   state = {
@@ -22,15 +23,6 @@ class App extends Component {
     return body;
   };
 
-  getSamplePrintoutFromResponse() {
-    return this.state.response.map((item, index) => (
-      <p className="App-intro">
-          {item.original}
-          {item.translated}
-      </p>
-    ));
-  }
-
   render() {
     return (
       <div className="App">
@@ -40,7 +32,7 @@ class App extends Component {
         </header>
         <div className="SampleContainer">
           {
-            this.getSamplePrintoutFromResponse()
+            <SortableComponent items={this.state.response}/>
           }
         </div>
       </div>
