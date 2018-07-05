@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "express-generator": "^4.16.0"
+    "express-generator": "^4.16.0",
+    "react-bootstrap": "^0.32.1",
+    "react-sortable-hoc": "^0.8.3"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

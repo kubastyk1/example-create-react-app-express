@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ButtonToolbar, Button, Form, FormGroup }  from  'react-bootstrap'
 import logo from './logo.svg';
 import './App.css';
 import SortableComponent from './SortableComponent.js';
@@ -13,16 +14,17 @@ class App extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    this.callApi()
+    this.callApi('/api/sample')
       .then(res => this.setState({ response: res.sample }))
       .catch(err => console.log(err));
   }
 
-  callApi = async () => {
-    const response = await fetch('/api/sample');
+  callApi = async (path) => {
+    const response = await fetch(path);
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -42,8 +44,13 @@ class App extends Component {
   };
 
   handleChange (event) {
-
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleClick (event) {
+    this.callApi('/api/generateMP3')
+      .then(res => alert('ok'))
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -53,19 +60,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Original:
-            <input type="text" onChange={this.handleChange} name="original" required/>
-          </label>
-          <label>
-            Translated:
-            <input type="text" onChange={this.handleChange} name="translated" required/>
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-        <div className="SampleContainer">
+        <div className="col-md-6">
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              Original:
+              <input type="text" onChange={this.handleChange} name="original" required/>
+            </FormGroup>
+            <FormGroup>
+              Translated:
+              <input type="text" onChange={this.handleChange} name="translated" required/>
+            </FormGroup>
+            <Button type="submit">Submit</Button>
+          </Form>
+        </div>
+
+        <div className="col-md-6">
           <SortableComponent items={this.state.response}/>
+          <ButtonToolbar>
+            <Button onClick={this.handleClick}>GET MP3</Button>
+          </ButtonToolbar>
         </div>
       </div>
     );

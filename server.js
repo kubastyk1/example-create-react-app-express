@@ -15,4 +15,8 @@ app.get('/api/sample', (req, res) => {
   ]});
 });
 
+app.get('/api/generateMP3', (req, res) => {
+  res.send({ mp3: 'File with MP3' });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
