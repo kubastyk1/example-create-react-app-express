@@ -1,4 +1,8 @@
 const express = require('express');
+var router  = express.Router();
+var http = require('http');
+var path = require('path');
+var fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -15,8 +19,11 @@ app.get('/api/sample', (req, res) => {
   ]});
 });
 
-app.get('/api/generateMP3', (req, res) => {
-  res.send({ mp3: 'File with MP3' });
+app.get('/download/:file(*)',(req, res) => {
+  var file = req.params.file;
+  var fileLocation = path.join('./',file);
+  console.log(fileLocation);
+  res.download(fileLocation, file);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

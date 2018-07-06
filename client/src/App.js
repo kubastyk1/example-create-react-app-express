@@ -48,9 +48,12 @@ class App extends Component {
   };
 
   handleClick (event) {
-    this.callApi('/api/generateMP3')
-      .then(res => alert('ok'))
-      .catch(err => console.log(err));
+    var link = document.createElement('a');
+    link.href = "http://localhost:5000/download/SampleAudio.mp3";
+    link.download = 'true';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   render() {
