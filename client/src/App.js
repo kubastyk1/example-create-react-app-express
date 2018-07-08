@@ -3,6 +3,7 @@ import { ButtonToolbar, Button, Form, FormGroup }  from  'react-bootstrap'
 import logo from './logo.svg';
 import './App.css';
 import SortableComponent from './SortableComponent.js';
+import $ from 'jquery'
 
 class App extends Component {
   constructor () {
@@ -48,8 +49,18 @@ class App extends Component {
   };
 
   handleClick (event) {
+    $.ajax({
+      url: "/api/generateScript",
+      type: 'POST',
+      dataType: 'json',
+      data: this.state,
+      complete: function(data) {
+
+      }.bind(this)
+    });
+
     var link = document.createElement('a');
-    link.href = "http://localhost:5000/download/SampleAudio.mp3";
+    link.href = "http://localhost:5000/download/SampleSound.wav";
     link.download = 'true';
     document.body.appendChild(link);
     link.click();
