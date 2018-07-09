@@ -55,16 +55,14 @@ class App extends Component {
       dataType: 'json',
       data: this.state,
       complete: function(data) {
-
+        var link = document.createElement('a');
+        link.href = "http://localhost:5000/download/" + data.responseJSON.fileName;
+        link.download = 'true';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }.bind(this)
     });
-
-    var link = document.createElement('a');
-    link.href = "http://localhost:5000/download/SampleSound.wav";
-    link.download = 'true';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   render() {
