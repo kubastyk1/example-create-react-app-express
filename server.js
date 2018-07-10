@@ -18,9 +18,24 @@ let ps = new shell({
   noProfile: true
 });
 
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
+let deleteOldFiles = function (req, res, next) {
+  let dirname = __dirname + CONST.SOUNDS_FOLDER;
+  fs.readdir(dirname, function(err, data){
+    data.forEach(function(file, index) {
+       let fileNameWithotFooter = file.replace(CONST.FILE_FOOTER_FORMAT,'');
+       let creationTimeInMilseconds = fileNameWithotFooter.replace(CONST.WAV,'');
+       let delayTime = 5*60*1000; // 5 minutes
+       if (new Date().getTime() - creationTimeInMilseconds > delayTime) {
+         fs.unlink(dirname + file, (err) => {
+            if (err) throw err;
+            console.log(dirname + file + ' was deleted');
+          });
+       }
+    })
+  })
+  next()
+}
+app.use(deleteOldFiles)
 
 app.get('/api/sample', (req, res) => {
   res.send({ sample: [
@@ -31,7 +46,7 @@ app.get('/api/sample', (req, res) => {
 });
 
 app.post('/api/generateScript', (req, res) => {
-  var fileName = "Sound-" + new Date().getTime() + ".wav"
+  var fileName = CONST.SOUNDS_FOLDER + CONST.FILE_FOOTER_FORMAT + new Date().getTime() + CONST.WAV;
   var script = CONST.HEAD_SCRIPT_1;
   script += fileName
   script += CONST.HEAD_SCRIPT_2;
@@ -51,13 +66,12 @@ app.post('/api/generateScript', (req, res) => {
   ps.invoke()
     .then(output => {
       console.log(output);
+      res.send({ fileName: fileName });
     })
     .catch(err => {
       console.log(err);
       ps.dispose();
     });
-
-  res.send({ fileName: fileName });
 });
 
 app.get('/download/:file(*)',(req, res) => {
@@ -65,7 +79,6 @@ app.get('/download/:file(*)',(req, res) => {
   var fileLocation = path.join('./',file);
   console.log(fileLocation);
   res.download(fileLocation, file);
-
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

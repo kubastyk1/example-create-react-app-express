@@ -18,4 +18,7 @@ module.exports = Object.freeze({
   PROSODY_END: `</prosody>`,
   SLEEP_BETWEAN_WORDS: `<break time="500ms" />`,
   SLEEP_BETWEAN_TRANSLATIONS: `<break time="2000ms" />`,
+  WAV: '.wav',
+  FILE_FOOTER_FORMAT: 'Sound-',
+  SOUNDS_FOLDER: '/Sounds/'
 });
