@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, Button, Form, FormGroup }  from  'react-bootstrap'
-import logo from './logo.svg';
 import './App.css';
 import SortableComponent from './SortableComponent.js';
 import $ from 'jquery'
@@ -69,29 +68,33 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <img src="./MainIcon.png" className="App-logo" alt="logo" />
         </header>
+
         <div className="col-md-6">
-          <Form onSubmit={this.handleSubmit}>
-            <FormGroup>
-              Original:
+          <Form onSubmit={this.handleSubmit} className="form-vertical">
+            <FormGroup className="form-group">
+              <h4> Original: </h4>
               <input type="text" onChange={this.handleChange} name="original" required/>
             </FormGroup>
-            <FormGroup>
-              Translated:
+            <FormGroup className="form-group">
+              <h4> Translated: </h4>
               <input type="text" onChange={this.handleChange} name="translated" required/>
             </FormGroup>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="submit">Add ti list</Button>
           </Form>
         </div>
 
         <div className="col-md-6">
           <SortableComponent items={this.state.response}/>
           <ButtonToolbar>
-            <Button onClick={this.handleClick}>GET MP3</Button>
+            <Button onClick={this.handleClick} className="submit mp3-button">GET MP3</Button>
           </ButtonToolbar>
         </div>
+
+        <footer className="App-footer">
+          <p> Created by <a href="https://github.com/kubastyk1">https://github.com/kubastyk1</a></p>
+        </footer>
       </div>
     );
   }
