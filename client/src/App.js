@@ -71,25 +71,29 @@ class App extends Component {
           <img src="./MainIcon.png" className="App-logo" alt="logo" />
         </header>
 
-        <div className="col-md-6">
-          <Form onSubmit={this.handleSubmit} className="form-vertical">
-            <FormGroup className="form-group">
-              <h4> Original: </h4>
-              <input type="text" onChange={this.handleChange} name="original" required/>
-            </FormGroup>
-            <FormGroup className="form-group">
-              <h4> Translated: </h4>
-              <input type="text" onChange={this.handleChange} name="translated" required/>
-            </FormGroup>
-            <Button type="submit" className="submit">Add ti list</Button>
-          </Form>
-        </div>
+        <div className="main-window">
+          <div className="col-md-6">
+            <Form onSubmit={this.handleSubmit} className="form-vertical">
+              <FormGroup className="form-group">
+                <h4> Original: </h4>
+                <input type="text" onChange={this.handleChange} name="original" required/>
+              </FormGroup>
+              <FormGroup className="form-group">
+                <h4> Translated: </h4>
+                <input type="text" onChange={this.handleChange} name="translated" required/>
+              </FormGroup>
+              <Button type="submit" className="submit">Add ti list</Button>
+            </Form>
+          </div>
 
-        <div className="col-md-6">
-          <SortableComponent items={this.state.response}/>
-          <ButtonToolbar>
-            <Button onClick={this.handleClick} className="submit mp3-button">GET MP3</Button>
-          </ButtonToolbar>
+          <div className="col-md-6">
+            <div className="Showcase__style__stylizedList Showcase__style__list">
+              <SortableComponent items={this.state.response}/>
+            </div>
+            <ButtonToolbar>
+              <Button onClick={this.handleClick} className="submit mp3-button">GET MP3</Button>
+            </ButtonToolbar>
+          </div>
         </div>
 
         <footer className="App-footer">

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 
-const SortableItem = SortableElement(({value}) => <li>{value}</li>);
+const SortableItem = SortableElement(({value}) => <li className="Showcase__style__stylizedItem">{value}</li>);
 
 const SortableList = SortableContainer(({items}) => {
   return (

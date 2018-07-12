@@ -15,13 +15,13 @@
 
 .App-footer {
   position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #87223b;
-    color: white;
-    text-align: center;
-    min-height: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #87223b;
+  color: white;
+  text-align: center;
+  min-height: 50px;
 }
 
 .App-footer p {
@@ -54,20 +54,62 @@
   width: 60%;
 }
 
-li {
-  width: 60%;
-  font-size: 20px;
-  border-style: solid;
-  border-width: 0.5px;
-  margin-bottom: 1px;
-  list-style-type: none;
+.main-window {
+  height: -webkit-fill-available;
 }
 
-ul {
-  margin-top: 20px;
+.sortable-list {
+  height: 600px;
+  overflow: auto;
 }
 
 input[type="text"] {
   width: 60%;
   height: 140%;
+}
+
+.Showcase__style__stylizedItem {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #efefef;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #333;
+    font-weight: 400;
+    font-size: 18px;
+    height: 50px;
+}
+
+.Showcase__style__stylizedList {
+    position: relative;
+    z-index: 0;
+    background-color: #f3f3f3;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    outline: none;
+}
+
+.Showcase__style__list {
+    width: 600px;
+    height: 600px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #999;
+}
+
+ul {
+  margin-top: 20px;
+  margin-right: 40px;
 }
