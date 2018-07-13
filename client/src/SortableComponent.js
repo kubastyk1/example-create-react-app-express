@@ -1,16 +1,28 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+import './SortableComponent.css';
 
-const SortableItem = SortableElement(({value}) => <li className="Showcase__style__stylizedItem">{value}</li>);
+const SortableItem = SortableElement(({value}) =>
+  <li className="Showcase__style__stylizedItem">
+    <div className="col-md-6">{value.original}</div>
+    -
+    <div className="col-md-6">{value.translated}</div>
+  </li>);
 
 const SortableList = SortableContainer(({items}) => {
   return (
-    <ul>
-      {items.map((value, index) => (
-        <SortableItem key={`item-${index}`} index={index} value={value.original + " - " + value.translated} />
-      ))}
-    </ul>
+    <div>
+      <li className="Showcase__style__stylizedItem list-info">
+        <div className="col-md-6">Original</div>
+        <div className="col-md-6">Translatq ed</div>
+      </li>
+      <ul>
+        {items.map((value, index) => (
+          <SortableItem key={`item-${index}`} index={index} value={value} />
+        ))}
+      </ul>
+    </div>
   );
 });
 
@@ -32,7 +44,11 @@ state = {
     if (this.state.items.length === 0 && this.props.items.length !== 0) {
       this.updateItemsStatus()
     }
-    return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
+    return (
+      <div className="Showcase__style__stylizedList Showcase__style__list">
+        <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
+      </div>
+    )
   }
 }
 

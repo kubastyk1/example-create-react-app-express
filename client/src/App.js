@@ -87,9 +87,7 @@ class App extends Component {
           </div>
 
           <div className="col-md-6">
-            <div className="Showcase__style__stylizedList Showcase__style__list">
-              <SortableComponent items={this.state.response}/>
-            </div>
+            <SortableComponent items={this.state.response}/>
             <ButtonToolbar>
               <Button onClick={this.handleClick} className="submit mp3-button">GET MP3</Button>
             </ButtonToolbar>
