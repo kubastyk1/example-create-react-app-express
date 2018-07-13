@@ -56,6 +56,8 @@
 
 .main-window {
   height: -webkit-fill-available;
+  display: inline-block;
+  margin: 20px;
 }
 
 .sortable-list {
@@ -64,6 +66,8 @@
 }
 
 input[type="text"] {
-  width: 60%;
-  height: 140%;
+  width: 80%;
+  height: 50px;
+  border: 1px solid #efefef;
+  font-size: 22px;
 }

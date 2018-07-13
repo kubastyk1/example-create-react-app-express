@@ -73,17 +73,22 @@ class App extends Component {
 
         <div className="main-window">
           <div className="col-md-6">
-            <Form onSubmit={this.handleSubmit} className="form-vertical">
-              <FormGroup className="form-group">
-                <h4> Original: </h4>
-                <input type="text" onChange={this.handleChange} name="original" required/>
-              </FormGroup>
-              <FormGroup className="form-group">
-                <h4> Translated: </h4>
-                <input type="text" onChange={this.handleChange} name="translated" required/>
-              </FormGroup>
-              <Button type="submit" className="submit">Add ti list</Button>
-            </Form>
+            <div className="Showcase__style__stylizedList Showcase__style__list">
+              <li className="Showcase__style__stylizedItem list-info">
+                <div className="col-md-12">Add translation to list</div>
+              </li>
+              <Form onSubmit={this.handleSubmit} className="form-vertical">
+                <FormGroup className="form-group">
+                  <h4> Original: </h4>
+                  <input type="text" onChange={this.handleChange} name="original" required/>
+                </FormGroup>
+                <FormGroup className="form-group">
+                  <h4> Translated: </h4>
+                  <input type="text" onChange={this.handleChange} name="translated" required/>
+                </FormGroup>
+                <Button type="submit" className="submit">Add ti list</Button>
+              </Form>
+            </div>
           </div>
 
           <div className="col-md-6">

@@ -15,7 +15,7 @@ const SortableList = SortableContainer(({items}) => {
     <div>
       <li className="Showcase__style__stylizedItem list-info">
         <div className="col-md-6">Original</div>
-        <div className="col-md-6">Translatq ed</div>
+        <div className="col-md-6">Translated</div>
       </li>
       <ul>
         {items.map((value, index) => (
