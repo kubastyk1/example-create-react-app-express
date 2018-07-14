@@ -86,7 +86,7 @@ class App extends Component {
                   <h4> Translated: </h4>
                   <input type="text" onChange={this.handleChange} name="translated" required/>
                 </FormGroup>
-                <Button type="submit" className="submit">Add ti list</Button>
+                <Button type="submit" className="submit">Add to list</Button>
               </Form>
             </div>
           </div>

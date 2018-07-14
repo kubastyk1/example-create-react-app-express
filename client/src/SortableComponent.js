@@ -46,7 +46,7 @@ state = {
     }
     return (
       <div className="Showcase__style__stylizedList Showcase__style__list">
-        <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
+        <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
       </div>
     )
   }

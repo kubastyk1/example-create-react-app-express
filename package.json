@@ -14,6 +14,7 @@
     "mongojs": "^2.6.0",
     "node-powershell": "^3.3.1",
     "react-bootstrap": "^0.32.1",
+    "react-router-dom": "^4.3.1",
     "react-sortable-hoc": "^0.8.3"
   },
   "devDependencies": {
