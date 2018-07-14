@@ -3,9 +3,11 @@ var router  = express.Router();
 var http = require('http');
 var path = require('path');
 var fs = require('fs');
+var mongojs = require('mongojs');
 const shell = require('node-powershell');
 var CONST = require('./CONST.js');
 
+var db = mongojs('translatorApp', ['translations'])
 const app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,11 +40,9 @@ let deleteOldFiles = function (req, res, next) {
 app.use(deleteOldFiles)
 
 app.get('/api/sample', (req, res) => {
-  res.send({ sample: [
-    {original:"Kot", translated:"Cat"},
-    {original:"Pies", translated:"Dog"},
-    {original:"Ptak", translated:"Bird"}
-  ]});
+  db.translations.find(function (err, docs) {
+    res.send({ sample: docs });
+  })
 });
 
 app.post('/api/generateScript', (req, res) => {
