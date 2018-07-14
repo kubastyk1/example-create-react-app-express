@@ -41,7 +41,7 @@ state = {
     });
   };
   render() {
-    if (this.state.items.length === 0 && this.props.items.length !== 0) {
+    if (this.state.items.length === 0 && this.props.items && this.props.items.length !== 0) {
       this.updateItemsStatus()
     }
     return (

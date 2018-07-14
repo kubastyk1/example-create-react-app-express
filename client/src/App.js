@@ -17,24 +17,9 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.callApi('/api/sample')
-      .then(res => this.setState({ response: res.sample }))
-      .catch(err => console.log(err));
-  }
-
-  callApi = async (path) => {
-    const response = await fetch(path);
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
   handleSubmit(event) {
     event.preventDefault();
-    let response = this.state.response;
+    let response = this.props.response;
     let newValue = {
       original: this.state.original,
       translated: this.state.translated
@@ -92,7 +77,7 @@ class App extends Component {
           </div>
 
           <div className="col-md-6">
-            <SortableComponent items={this.state.response}/>
+            <SortableComponent items={this.props.response.data}/>
             <ButtonToolbar>
               <Button onClick={this.handleClick} className="submit mp3-button">GET MP3</Button>
             </ButtonToolbar>
