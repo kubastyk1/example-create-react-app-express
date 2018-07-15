@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { ButtonToolbar, Button, Form, FormGroup }  from  'react-bootstrap'
 import './App.css';
 import SortableComponent from './SortableComponent.js';
+import Header from './components/Header.js';
+import Footer from './components/Footer.js';
 import $ from 'jquery'
 
 class App extends Component {
@@ -52,10 +54,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src="./MainIcon.png" className="App-logo" alt="logo" />
-        </header>
-
+        <Header />
         <div className="main-window">
           <div className="col-md-6">
             <div className="Showcase__style__stylizedList Showcase__style__list">
@@ -83,10 +82,7 @@ class App extends Component {
             </ButtonToolbar>
           </div>
         </div>
-
-        <footer className="App-footer">
-          <p> Created by <a href="https://github.com/kubastyk1">https://github.com/kubastyk1</a></p>
-        </footer>
+        <Footer />
       </div>
     );
   }
