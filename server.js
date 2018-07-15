@@ -51,6 +51,15 @@ app.get('/lessons/:id', (req, res) => {
   })
 });
 
+app.post('/addLesson', (req, res) => {
+  db.lessons.insert(req.body, function(err, res) {
+    if (err) {
+      console.log(err);
+    }
+    res.redirect('/');
+  });
+});
+
 app.post('/api/generateScript', (req, res) => {
   var fileName = CONST.SOUNDS_FOLDER + CONST.FILE_FOOTER_FORMAT + new Date().getTime() + CONST.WAV;
   var script = CONST.HEAD_SCRIPT_1;

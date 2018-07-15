@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
-import { Form, FormGroup, FormControl, Button }  from  'react-bootstrap'
+import SortableComponent from './SortableComponent.js';
+import { Form, FormGroup, FormControl, ButtonToolbar, Button }  from  'react-bootstrap'
+import $ from 'jquery'
 
 class AdminAddLesson extends Component {
   constructor () {
@@ -9,10 +11,13 @@ class AdminAddLesson extends Component {
     this.state = {
       translationList: [],
       text: '',
-      separator: ''
+      separator: ',',
+      lessonName: '',
+      language: 'PL-EN'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmitOfGeneratedList = this.handleSubmitOfGeneratedList.bind(this);
   }
 
   CSVToArray( strData, strDelimiter ) {
@@ -47,7 +52,9 @@ class AdminAddLesson extends Component {
           } else {
               strMatchedValue = arrMatches[ 3 ];
           }
-          arrData[ arrData.length - 1 ].push( strMatchedValue.trim() );
+          if (strMatchedValue !== '') {
+            arrData[ arrData.length - 1 ].push( strMatchedValue.trim() );
+          }
       }
       return( arrData );
   }
@@ -73,6 +80,24 @@ class AdminAddLesson extends Component {
     this.setState({ translationList: translations })
   };
 
+  handleSubmitOfGeneratedList(event) {
+    event.preventDefault();
+    let json = {
+      name: this.state.lessonName,
+      language: this.state.language,
+      translations: this.state.translationList
+    }
+    $.ajax({
+      url: "/addLesson",
+      type: 'POST',
+      dataType: 'json',
+      data: json,
+      complete: function(data) {
+        alert('OK');
+      }.bind(this)
+    });
+  }
+
   handleChange (event) {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -93,12 +118,28 @@ class AdminAddLesson extends Component {
                   <FormControl componentClass="textarea" placeholder="textarea" name="text" style={{height: '200px'}}  onChange={this.handleChange} required/>
                 </FormGroup>
                 <FormGroup className="form-group">
-                  <h4> Separator: </h4>
+                  <h4> Separator : </h4>
                   <FormControl type="text" placeholder="text" name="separator" onChange={this.handleChange} required/>
                 </FormGroup>
                 <Button type="submit" className="submit">Generate list</Button>
               </Form>
             </div>
+          </div>
+
+          <div className="col-md-6">
+            <SortableComponent items={this.state.translationList}/>
+            <Form onSubmit={this.handleSubmitOfGeneratedList} className="form-vertical">
+              <FormGroup className="form-group">
+                <h4> Lesson name : </h4>
+                <FormControl type="text" placeholder="text" name="lessonName" onChange={this.handleChange} required/>
+              </FormGroup>
+              <h4> Languages : </h4>
+              <FormControl componentClass="select" placeholder="select" name="language" onChange={this.handleChange} required>
+                <option value="PL-EN">PL-EN</option>
+                <option value="EN-PL">EN-PL</option>
+              </FormControl>
+              <Button type="submit" className="submit">Save lesson</Button>
+            </Form>
           </div>
         </div>
         <Footer />
