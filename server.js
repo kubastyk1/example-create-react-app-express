@@ -40,14 +40,14 @@ let deleteOldFiles = function (req, res, next) {
 app.use(deleteOldFiles)
 
 app.get('/sample', (req, res) => {
-  db.translations.find(function (err, docs) {
-    res.send({ data: docs });
+  db.lessons.find({name: 'Sample'}, function (err, docs) {
+    res.send({ data: docs[0] });
   })
 });
 
-app.get('/lessons/:id', (req, res) => {
-  db.translations.find(function (err, docs) {
-    res.send({ data: docs });
+app.get('/lessons/:name', (req, res) => {
+  db.lessons.find({name: req.params.name}, function (err, docs) {
+    res.send({ data: docs[0] });
   })
 });
 

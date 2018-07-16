@@ -37,11 +37,12 @@ state = {
   };
   updateItemsStatus = () => {
     this.setState({
-      items: this.props.items,
+      items: this.props.items.translations,
     });
   };
   render() {
-    if (this.state.items.length === 0 && this.props.items && this.props.items.length !== 0) {
+    if (this.state.items.length === 0 && this.props.items
+      && this.props.items.translations && this.props.items.translations.length !== 0) {
       this.updateItemsStatus()
     }
     return (
