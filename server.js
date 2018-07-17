@@ -51,6 +51,12 @@ app.get('/lessons/:name', (req, res) => {
   })
 });
 
+app.get('/lessons', (req, res) => {
+  db.lessons.find(function (err, docs) {
+    res.send({ data: docs });
+  })
+});
+
 app.post('/addLesson', (req, res) => {
   db.lessons.insert(req.body, function(err, res) {
     if (err) {
