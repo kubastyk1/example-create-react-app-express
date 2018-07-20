@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import App from './App.js';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
+import CardContainer from './components/CardContainer.js';
+import './Card.css';
+
 import $ from 'jquery';
 
 class LessonsList extends Component {
@@ -22,7 +25,7 @@ class LessonsList extends Component {
       <div className="App">
         <Header />
         <div className="main-window">
-
+          <CardContainer items={this.state.response.data} />
         </div>
         <Footer />
       </div>
