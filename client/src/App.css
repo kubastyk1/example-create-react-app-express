@@ -56,7 +56,7 @@
 
 .main-window {
   height: -webkit-fill-available;
-  display: inline-block;
+  display: block;
   margin: 20px;
 }
 

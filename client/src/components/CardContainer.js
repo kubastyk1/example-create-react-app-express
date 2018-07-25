@@ -4,10 +4,12 @@ class Card extends Component {
   render() {
     return (
       <div className="card">
-        <div className="container" id="grad1">
-          <h3 className="card_name"><b> {this.props.item.name} </b></h3>
-          <p className="card_describtion">Architect & Engineer</p>
-        </div>
+        <a href={"/lessons/" + this.props.item.name}>
+          <div className="container" id="grad1">
+            <h3 className="card_name"><b> {this.props.item.name} </b></h3>
+            <p className="card_describtion">Architect & Engineer</p>
+          </div>
+        </a>
       </div>
     )
   }
